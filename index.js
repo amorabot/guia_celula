@@ -104,30 +104,73 @@ let camadaAtualPerguntas
 function startGuia(){
     console.log("deu certo!")
     startBtn.classList.add('hide') //torna o botão de inicio invisivel
-    camadaAtualPerguntas = 0
+    camadaAtualPerguntas = 0 //contador para indicar em que camada estamos
     questionContainerElement.classList.remove('hide') //torna as perguntas visiveis
-    setarProximaPergunta()
+    setarProximaPergunta() //prepara tudo para setar a próxima pergunta(primeira no caso)
+    // console.log(arvore[camadaAtualPerguntas].respostas[0][0][0])
+    // console.log(arvore[C3].perguntas)
+    // console.log(arvore[C2].perguntas)
 }
 function setarProximaPergunta(){
-    mostrarPerguntas(bancoDePerguntas[camadaAtualPerguntas])
+    resetState()
+    // console.log(camadaAtualPerguntas)
+    mostrarPerguntas(arvore[camadaAtualPerguntas].perguntas)
 }
 function mostrarPerguntas(perguntas){
     perguntas.forEach((pergAtual, index)=>{
         const button = document.createElement('button')
-        button.innerText = pergAtual.conteudo
+        button.innerText = pergAtual[0].conteudo
         button.classList.add('btn')
         button.dataset.camada = camadaAtualPerguntas
         button.dataset.numero = index
-        button.dataset.child = pergAtual.childs
         button.addEventListener('click', selecionarPergunta)
         questionElement.appendChild(button)
     })
 }
 function selecionarPergunta(p){
-    console.log(p.target.dataset.numero)
+    // console.log(p.target.dataset.numero)
+    // console.log(arvore[camadaAtualPerguntas].respostas[p.target.dataset.numero][0])
+    questionElement.innerText = arvore[camadaAtualPerguntas].perguntas[p.target.dataset.numero][0].conteudo
+    selecionarResposta(p.target.dataset.numero)
 }
-function selecionarResposta(){
+function selecionarResposta(numPergunta){
+    arvore[camadaAtualPerguntas].respostas[numPergunta][0].forEach((respAtual, indice)=>{
+        const buttonP = document.createElement('button')
+        buttonP.innerText = respAtual.conteudo
+        buttonP.classList.add('btn')
+        buttonP.dataset.numero = indice
+        buttonP.dataset.isFinal = respAtual.isFinal
+        console.log(buttonP.dataset.numero, buttonP.dataset.isFinal)
+        // buttonP.dataset.child = dizer quem são os filhos dessa resposta
+        if(buttonP.dataset.isFinal == 'true'){
+            buttonP.addEventListener('click', encerrar)
+            answerButtonsElement.appendChild(buttonP)
+        } else {
+            console.log(camadaAtualPerguntas)
+            buttonP.addEventListener('click', setarProximaPergunta)
+            answerButtonsElement.appendChild(buttonP)
+        }
+    })
+    let respostasCamada = Array.from(answerButtonsElement.children)
+        let proxCamada = false
+        respostasCamada.forEach((resp)=>{
+            if(!proxCamada && resp.dataset.isFinal == 'false'){
+                proxCamada = true
+                camadaAtualPerguntas++
+            }
+        })
+}
+
+function encerrar(){
+    console.log('cabo')
+}
+
+function resetState(){
+    questionElement.innerText = ''
     
+    while(answerButtonsElement.firstChild){
+        answerButtonsElement.removeChild(answerButtonsElement.firstChild)
+    }
 }
 //=========================================================================================
 function criarCamada(numCamada, numPerguntas){   
