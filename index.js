@@ -11,9 +11,10 @@ let metodos = [
     {nome: 'Entrevista', relacionado: []},
     {nome: 'Questionario', relacionado: []},
     {nome: 'Grupos de foco', relacionado: []},
-    {nome: '', relacionado: []},
-    {nome: '', relacionado: []},
-    {nome: '', relacionado: []},
+    {nome: 'Grupos de foco(posterior)', relacionado: []},
+    {nome: 'Entrevista(posterior)', relacionado: []},
+    {nome: 'Questionario(posterior)', relacionado: []},
+    {nome: 'Prototipacao em papel', relacionado: []},
 ]
 
 const C1 = 0
@@ -29,7 +30,7 @@ criarCamada(2,1)
 criarCamada(3,2)
 criarCamada(4,6)
 criarCamada(5,10)
-criarCamada(6,6)
+criarCamada(6,7)
 console.log(arvore)
 //=========================================================================================
 
@@ -79,9 +80,9 @@ let P6C4 = { conteudo: 'Como você gostaria de obter suas informações?',
 //=========================================================
 
 //                                  5a CAMADA
-let P1C5 = { conteudo: 'Aqui vão algumas sugestões finais:',
+let P1C5 = { conteudo: 'Aqui vão algumas sugestões finais(com usuários):',
                     childs: arvore[C5].respostas[0]}
-let P2C5 = { conteudo: 'Aqui vão algumas sugestões finais:',
+let P2C5 = { conteudo: 'Aqui vão algumas sugestões finais(sem usuários):',
                     childs: arvore[C5].respostas[1]}
 let P3C5 = { conteudo: 'Que tipo de informação você quer descobrir?',
                     childs: arvore[C5].respostas[2]}
@@ -235,25 +236,30 @@ let respostasP6C4 = [
 //                                  5a CAMADA
 
 let respostasP1C5 = [           //RESPOSTAS 1a PERGUNTA
-    criarResposta('Avaliar e/ou comparar alternativas de design1',
-    false, arvore[C6].perguntas[0][0]),
+    criarResposta('Se você quer avaliar atitudes, opiniões e impressões de vários usuários',
+    true, 'Grupos de foco(posterior)'),
     
-    criarResposta('Avaliar como o usuário utiliza determinado sistema1',
-    false, arvore[C6].perguntas[1][0]),
+    criarResposta('Se você quer coletar informações detalhadas profundas de usuários individuais',
+    true, 'Entrevista(posterior'),
+    
+    criarResposta('Se você quer coletar rapidamente dados (especialmente quantitativos) de muitos usuários',
+    true, 'Questionario(posterior'),
+    
+    criarResposta('Se você quer avaliar a usabilidade de um design por meio da utilização de usuários',
+    true, 'Prototipacao em papel'),
 ]
+
 let respostasP2C5 = [           //RESPOSTAS 2a PERGUNTA
-    criarResposta('Avaliar e/ou comparar alternativas de design2',
-    false, arvore[C6].perguntas[2][0]),
     
     criarResposta('Avaliar como o usuário utiliza determinado sistema2',
-    false, arvore[C6].perguntas[3][0]),
+    false, arvore[C6].perguntas[1][0]),
 ]
 let respostasP3C5 = [           //RESPOSTAS 3a PERGUNTA
     criarResposta('Avaliar e/ou comparar alternativas de design3',
-    false, arvore[C6].perguntas[4][0]),
+    false, arvore[C6].perguntas[2][0]),
     
     criarResposta('Avaliar como o usuário utiliza determinado sistema3',
-    false, arvore[C6].perguntas[5][0]),
+    false, arvore[C6].perguntas[3][0]),
 ]
         bancoDeRespostas[C5].push(respostasP1C5)
         bancoDeRespostas[C5].push(respostasP2C5)
@@ -297,6 +303,7 @@ function mostrarPergunta(pergunta){
 }
 function displayRespostas(childsPergunta){
     childsPergunta.forEach((respAtual, indice)=>{
+        // console.log(respAtual)
         const buttonP = document.createElement('button')
         buttonP.innerText = respAtual.conteudo
         buttonP.classList.add('btn')
@@ -306,6 +313,7 @@ function displayRespostas(childsPergunta){
         
         // console.log(buttonP.dataset.nome)
         if(buttonP.dataset.isFinal == 'true'){
+            buttonP.dataset.metodo = respAtual.child
             buttonP.addEventListener('click', encerrar)
             answerButtonsElement.appendChild(buttonP)
         }else {
@@ -324,11 +332,28 @@ function setarPosicaoArvore(p){
         // console.log(arvore[camadaAtualPerguntas].respostas[i][0])
         // console.log('-')
     }
-    if(camadaAtualPerguntas == 3){ //retirar o excesso(itens de recomendação)
-        for(let i = 0; i<4; i++){
-            concatLayer.shift()
+    // if(camadaAtualPerguntas == 3){ //retirar o excesso(itens de recomendação)
+    //     for(let i = 0; i<4; i++){
+    //         concatLayer.shift()
+    //     }
+    //     // console.log(concatLayer)
+    // }
+    // concatLayer.forEach((itemAtual)=>{
+    //     console.log(itemAtual.conteudo)
+    //     console.log(itemAtual)
+    // })
+    let acc = 0;
+    do{
+        if(concatLayer[acc].isFinal){
+            concatLayer.splice(acc,1)
+        } else{
+            acc++
         }
-    }
+    }while(acc<concatLayer.length)
+    // concatLayer.forEach((itemAtual)=>{
+    //     console.log(itemAtual.conteudo)
+    //     console.log(itemAtual)
+    // })
         console.log(concatLayer.length)
         console.log(camadaAtualPerguntas,numNaCamada)
     let pos = concatLayer.map(function(e) { return e.conteudo; }).indexOf(p.target.dataset.nome);
@@ -338,8 +363,8 @@ function setarPosicaoArvore(p){
     setarProximaPergunta(camadaAtualPerguntas, numNaCamada)
 }
 
-function encerrar(){
-    console.log('cabo')
+function encerrar(b){
+    console.log(`cabo, foi ${b.target.dataset.metodo}`)
 }
 
 function resetState(){
