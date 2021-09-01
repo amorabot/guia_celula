@@ -9,16 +9,20 @@
     </head>
     
     <body>
-        <div class="container" style="background-image: url('Card-Pergunta.png'); display: flex; justify-content: center; background-repeat:no-repeat;">
+        <div class="container pergunta">
             <div id="question-container" class="hide">
+                <div id='header-sugestao' class='hide'>Sugestão</div>
+
                 <div id='question-header' style="display: flex;">
                 <img id='question-icon' src='icon-1.png' height='70px' width="70px">
                 <div id="question"></div>
-                </div>
-                <!-- <hr> -->
+            </div>
+            <!-- <hr> -->
+                <div class='hide sugestao-body'>a</div>
                 <div id="answer-buttons" class="button-grid">
-                
+
                 </div>
+                <div id='botoes-sugestao' class='hide'><div style='display:flex; justify-content: center; align-items: center;'><button class='start-btn'>SAIBA MAIS</button><img src='icon-restart.png' height='50px' width='50px'></div></div>
             </div>
             <div class="controls">
                 <button id="start-btn" class="start-btn btn">COMEÇAR O GUIA</button>

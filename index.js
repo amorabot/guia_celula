@@ -14,7 +14,7 @@ var metodos = [
     ['inicial','confirmatório','com usuários','simples','qualitativo']},
     
     {nome: 'Questionario', relacionado: 
-    ['inicial','eficiente','simples','exploratório', 'com usuários','quantitativo']},
+    ['inicial','eficiente','simples', 'com usuários','quantitativo']},
     
     {nome: 'Grupos de foco', relacionado: 
     ['inicial','elaborado','com usuários', 'exploratório','qualitativo']},
@@ -220,7 +220,7 @@ let respostasP1C4 = [           //RESPOSTAS 1a PERGUNTA
     criarResposta('Quero coletar informações detalhadas e profundas de usuários individualmente',
     true, 'Entrevista'),
     
-    criarResposta('Quero coletar dados(principalmente quantitativos) rapidamente de muitos usuários',
+    criarResposta('Quero coletar dados(principalmente quantitativos) rapidamente de muitos usuáriosXX',
     true, 'Questionario'),
     
     criarResposta('Quero avaliar atitudes, opiniões e impressões de vários usuários',
@@ -414,6 +414,7 @@ let numNaCamada
 let contResp
 let iconController
 const iconeQuestao = document.getElementById('question-icon')
+const sugestaoBody = document.querySelector('.sugestao-body')
 // console.log(iconController)
 //===========================FUNÇÕES=======================================================
 function startGuia(){
@@ -430,7 +431,7 @@ function startGuia(){
     startBtn.remove()
 }
 function setarProximaPergunta(camada, num){
-    resetState('Abordagens:')  
+    resetState()  
     mostrarPergunta(arvore[camada].perguntas[num][0])
     // console.log(camada,num)
 }
@@ -447,9 +448,9 @@ function displayRespostas(childsPergunta){
         const buttonP = document.createElement('button')
         //  <img src="img_girl.jpg" alt="Girl in a jacket" width="500" height="600"> 
         const iconItem = document.createElement('img')
-        iconItem.setAttribute('src', 'seta-leia-mais-produtos.png')
-        iconItem.setAttribute('width', '35px')
-        iconItem.setAttribute('height', '30px')
+        iconItem.setAttribute('src', 'Seleção.png')
+        iconItem.setAttribute('width', '25px')
+        iconItem.setAttribute('height', '25px')
         buttonContainer.appendChild(iconItem)
         buttonContainer.appendChild(buttonP)
         buttonP.innerText = respAtual.conteudo
@@ -495,17 +496,26 @@ function setarPosicaoArvore(p){
 }
 
 function encerrar(b){
-    // console.log(typeof b.target.dataset.metodo)
+    resetState()
+    iconeQuestao.setAttribute('src', 'icon-heart.png')
+    questionElement.innerText = `${b.target.dataset.metodo}.
+    
+    `
+    let card = document.querySelector('.container')
+    // console.log('peguei o card')
+    card.classList.add('sugestao')
+    card.classList.remove('pergunta')
+    let sugestaoHeader = document.getElementById('header-sugestao')
+    sugestaoHeader.classList.remove('hide')
+    let botoesFinal = document.getElementById('botoes-sugestao')
+    botoesFinal.classList.remove('hide')
+    sugestaoBody.innerText = 'testando'
+    sugestaoBody.classList.remove('hide')
     recomendar(b.target.dataset.metodo,metodos)
-    var recomendacao
-    alert(`O método mais indicado é:  ${b.target.dataset.metodo}.
-    ${recomendacao}
-    `)
-    console.log(`O método mais indicado é:  ${b.target.dataset.metodo}.`)
+    // console.log(sugestaoBody.innerText)
 }
 
-function resetState(string){
-    questionElement.innerText = string
+function resetState(){
     
     while(answerButtonsElement.firstChild){
         answerButtonsElement.removeChild(answerButtonsElement.firstChild)
@@ -636,7 +646,6 @@ function frequenciasEm(array){
         frequencias.splice(c,1)
         }
     })
-    // console.log(typeof mensagem)
-    resetState(mensagem)
+    sugestaoBody.innerText = mensagem
     // recomendacao = mensagem  
 }

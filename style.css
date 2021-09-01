@@ -81,6 +81,7 @@ body.wrong{
     font-weight: bold;
     /* margin-top: 200px; */
     padding: 15px 25px 15px 25px;
+    margin: 15px 25px 15px 25px;
     background-color: #0066cc;
     border-radius: 20px;
     color: whitesmoke;
@@ -114,4 +115,34 @@ body.wrong{
 #question-container{
     margin: 70px 30px 30px 30px;
     height: 300px;
+}
+.pergunta{
+    background-image: url('Card-Pergunta.png');
+    display: flex; justify-content: center;
+    background-repeat:no-repeat;
+}
+.sugestao{
+    background-image: url('Card-Sugestão.png');
+    display: flex; justify-content: center;
+    background-repeat:no-repeat;
+}
+.sugestao-body{
+    font-size: 20px;
+    color: #4d4d4d;
+}
+
+#header-sugestao{
+    font-size: 35px;
+    font-weight: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: white;
+    text-align: center;
+    margin-top: -25px;
+    margin-bottom: 20px;
+}
+
+.header{
+    font-size: 35px;
+    font-weight: bold;
+    color: #4d4d4d;
 }
