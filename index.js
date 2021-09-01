@@ -69,7 +69,7 @@ criarCamada(6,6)
 //====================================PERGUNTAS============================================
 
 //                                  1a CAMADA
-let P1C1 = { conteudo: 'o que deseja avaliar?',
+let P1C1 = { conteudo: 'O que deseja avaliar?',
                     childs: arvore[C1].respostas[0]}
         bancoDePerguntas[C1].push(P1C1)
 //=========================================================
@@ -83,25 +83,25 @@ let P1C2 = { conteudo: 'Que tipo de informação você quer descobrir?',
 //                                  3a CAMADA
 let P1C3 = { conteudo: 'Que artefatos podem representar a etapa do meu projeto atualmente?',
                     childs: arvore[C3].respostas[0]}
-let P2C3 = { conteudo: 'Que artefatoooooooooooos podem representar a etapa do meu projeto atualmente?',
+let P2C3 = { conteudo: 'Que artefatos podem representar a etapa do meu projeto atualmente?',
                     childs: arvore[C3].respostas[1]}
         bancoDePerguntas[C3].push(P1C3)
         bancoDePerguntas[C3].push(P2C3)
 //=========================================================
 
 //                                  4a CAMADA
-let P1C4 = { conteudo: 'Já temos algumas sugestões:',
+let P1C4 = { conteudo: 'Escolha a alternativa que mais se encaixa no seu projeto:',
                     childs: arvore[C4].respostas[0]}
 let P2C4 = { conteudo: 'Gostaria de realizar a avaliação com ou sem usuários?',
                     childs: arvore[C4].respostas[1]}
 let P3C4 = { conteudo: 'Gostaria de realizar a avaliação com ou sem usuários?',
                     childs: arvore[C4].respostas[2]}
                     
-let P4C4 = { conteudo: 'Como você gostaria de obter suas informações?1',
+let P4C4 = { conteudo: 'Como você gostaria de obter suas informações?',
                     childs: arvore[C4].respostas[3]}
-let P5C4 = { conteudo: 'Como você gostaria de obter suas informações?2',
+let P5C4 = { conteudo: 'Como você gostaria de obter suas informações?',
                     childs: arvore[C4].respostas[4]}
-let P6C4 = { conteudo: 'Como você gostaria de obter suas informações?3',
+let P6C4 = { conteudo: 'Como você gostaria de obter suas informações?',
                     childs: arvore[C4].respostas[5]}
         bancoDePerguntas[C4].push(P1C4)
         bancoDePerguntas[C4].push(P2C4)
@@ -165,9 +165,7 @@ let P2C6 = { conteudo: 'Aqui vão algumas sugestões finais2:',
 
 let respostasP1C1 = [           //RESPOSTAS 1a PERGUNTA
     criarResposta('Ideias e alternativas de design', false, arvore[C2].perguntas[0][0]),
-    criarResposta('opção 1', true, null),
-    criarResposta('opção 2', true, null),
-    criarResposta('opção 3', true, null)
+    criarResposta('Conformidade com um padrão', true, null)
 ]                                                               
         bancoDeRespostas[C1].push(respostasP1C1)
 //=========================================================================================
@@ -296,7 +294,7 @@ let respostasP1C5 = [           //RESPOSTAS 1a PERGUNTA
     criarResposta('Se você quer coletar rapidamente dados (especialmente quantitativos) de muitos usuários',
     true, 'Questionario(posterior)'),
     
-    criarResposta('Se você quer avaliar a usabilidade de um design por meio da utilização de usuários1',
+    criarResposta('Se você quer avaliar a usabilidade de um design por meio da utilização de usuários',
     true, 'Prototipacao em papel'),
 ]
 
@@ -309,16 +307,16 @@ let respostasP2C5 = [           //RESPOSTAS 2a PERGUNTA
     true, 'Percurso cognitivo')
 ]
 let respostasP3C5 = [           //RESPOSTAS 3a PERGUNTA
-    criarResposta('Se você quer avaliar atitudes, opiniões e impressões de vários usuarios',
+    criarResposta('Se você quer avaliar atitudes, opiniões e impressões de vários usuarios.',
     true, 'Grupos de foco(posterior)'),
     
-    criarResposta('Se você quer coletar informações detalhadas profundas de usuarios individuais',
+    criarResposta('Se você quer coletar informações detalhadas profundas de usuarios individuais.',
     true, 'Entrevista(posterior)'),
     
-    criarResposta('Se você quer coletar rapidamente dados (especialmente quantitativos) de muitos usuarios',
+    criarResposta('Se você quer coletar rapidamente dados (especialmente quantitativos) de muitos usuarios.',
     true, 'Questionario(posterior)'),
     
-    criarResposta('Se você quer avaliar a usabilidade de um sistema interativo1',
+    criarResposta('Se você quer avaliar a usabilidade de um sistema interativo',
     true, 'Teste de usabilidade'),
 ]
 let respostasP4C5 = [
@@ -329,14 +327,14 @@ let respostasP4C5 = [
 
 
 let respostasP5C5 = [
-    criarResposta('Dados quantitativos: quantas vezes alguma ação foi realizada, tempo demandado, número de erros cometidos1',
+    criarResposta('Dados quantitativos: quantas vezes alguma ação foi realizada, tempo demandado, número de erros cometidos',
     false, arvore[C6].perguntas[0][0]),
     
-    criarResposta('Dados qualitativos: opiniões, expectativas, críticas, sugestões e comentários1',
+    criarResposta('Dados qualitativos: opiniões, expectativas, críticas, sugestões e comentários',
     false, arvore[C6].perguntas[1][0])
 ]
 let respostasP6C5 = [
-    criarResposta('Se você quer entender usuários, seu ambiente, suas tarefas em contexto1',
+    criarResposta('Se você quer entender usuários, seu ambiente, suas tarefas em contexto',
     true, 'Estudos de campo'),
     
 ]
@@ -344,16 +342,16 @@ let respostasP6C5 = [
 
 
 let respostasP7C5 = [
-        criarResposta('Dados quantitativos: quantas vezes alguma ação foi realizada, tempo demandado, número de erros cometidos1',
+        criarResposta('Dados quantitativos: quantas vezes alguma ação foi realizada, tempo demandado, número de erros cometidos.',
     false, arvore[C6].perguntas[2][0]),
     
-    criarResposta('Dados qualitativos: opiniões, expectativas, críticas, sugestões e comentários1',
+    criarResposta('Dados qualitativos: opiniões, expectativas, críticas, sugestões e comentários.',
     false, arvore[C6].perguntas[3][0])
 ]
 let respostasP8C5 = [
-    criarResposta('Se você quer entender usuários, seu ambiente, suas tarefas em contexto2',
+    criarResposta('Se você quer entender usuários, seu ambiente, suas tarefas em contexto.',
     true, 'Estudo de campo'),
-    criarResposta('Se você quer avaliar a usabilidade de um design por meio da utilização de usuários2',
+    criarResposta('Se você quer avaliar a usabilidade de um design por meio da utilização de usuários.',
     true, 'Prototipacao em papel')
 ]
 
@@ -414,6 +412,9 @@ const answerButtonsElement = document.getElementById('answer-buttons')
 let camadaAtualPerguntas
 let numNaCamada
 let contResp
+let iconController
+const iconeQuestao = document.getElementById('question-icon')
+// console.log(iconController)
 //===========================FUNÇÕES=======================================================
 function startGuia(){
     // console.log("deu certo!")
@@ -424,6 +425,9 @@ function startGuia(){
     questionContainerElement.classList.remove('hide') //torna as perguntas visiveis
     setarProximaPergunta(camadaAtualPerguntas, numNaCamada) //prepara tudo para setar a próxima pergunta(primeira no caso)
     // console.log(arvore[C5].perguntas[1][0])
+    // const btnComeco = document.querySelector('#start-btn')
+    // btnComeco.remove()
+    startBtn.remove()
 }
 function setarProximaPergunta(camada, num){
     resetState('Abordagens:')  
@@ -431,13 +435,23 @@ function setarProximaPergunta(camada, num){
     // console.log(camada,num)
 }
 function mostrarPergunta(pergunta){
-    questionElement.innerText = pergunta.conteudo
+    // const questionContainer = document.createElement('div')
+    questionElement.innerHTML = pergunta.conteudo
     displayRespostas(pergunta.childs[0])
 }
 function displayRespostas(childsPergunta){
     childsPergunta.forEach((respAtual, indice)=>{
         // console.log(respAtual)
+        const buttonContainer = document.createElement('div')
+        buttonContainer.setAttribute('id', 'btn-container')
         const buttonP = document.createElement('button')
+        //  <img src="img_girl.jpg" alt="Girl in a jacket" width="500" height="600"> 
+        const iconItem = document.createElement('img')
+        iconItem.setAttribute('src', 'seta-leia-mais-produtos.png')
+        iconItem.setAttribute('width', '35px')
+        iconItem.setAttribute('height', '30px')
+        buttonContainer.appendChild(iconItem)
+        buttonContainer.appendChild(buttonP)
         buttonP.innerText = respAtual.conteudo
         buttonP.classList.add('btn')
         buttonP.dataset.num = indice
@@ -448,11 +462,11 @@ function displayRespostas(childsPergunta){
         if(buttonP.dataset.isFinal == 'true'){
             buttonP.dataset.metodo = respAtual.child
             buttonP.addEventListener('click', encerrar)
-            answerButtonsElement.appendChild(buttonP)
+            answerButtonsElement.appendChild(buttonContainer)
         }else {
             buttonP.dataset.indexArvore
             buttonP.addEventListener('click', setarPosicaoArvore)
-            answerButtonsElement.appendChild(buttonP)
+            answerButtonsElement.appendChild(buttonContainer)
         }
     })
     
@@ -474,6 +488,9 @@ function setarPosicaoArvore(p){
     let pos = concatLayer.map(function(e) { return e.conteudo; }).indexOf(p.target.dataset.nome);
     numNaCamada = pos
     camadaAtualPerguntas++
+    let iconController = `icon-${camadaAtualPerguntas+1}.png`
+    console.log(iconController)
+    iconeQuestao.setAttribute('src', iconController)
     setarProximaPergunta(camadaAtualPerguntas, numNaCamada)
 }
 
@@ -484,7 +501,7 @@ function encerrar(b){
     alert(`O método mais indicado é:  ${b.target.dataset.metodo}.
     ${recomendacao}
     `)
-    // console.log(recomendacao)
+    console.log(`O método mais indicado é:  ${b.target.dataset.metodo}.`)
 }
 
 function resetState(string){
