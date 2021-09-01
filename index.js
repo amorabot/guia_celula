@@ -426,7 +426,7 @@ function startGuia(){
     // console.log(arvore[C5].perguntas[1][0])
 }
 function setarProximaPergunta(camada, num){
-    resetState()  
+    resetState('Abordagens:')  
     mostrarPergunta(arvore[camada].perguntas[num][0])
     // console.log(camada,num)
 }
@@ -487,8 +487,8 @@ function encerrar(b){
     // console.log(recomendacao)
 }
 
-function resetState(){
-    questionElement.innerText = 'Abordagens:'
+function resetState(string){
+    questionElement.innerText = string
     
     while(answerButtonsElement.firstChild){
         answerButtonsElement.removeChild(answerButtonsElement.firstChild)
@@ -620,6 +620,6 @@ function frequenciasEm(array){
         }
     })
     // console.log(typeof mensagem)
-    console.log(mensagem)
+    resetState(mensagem)
     // recomendacao = mensagem  
 }
