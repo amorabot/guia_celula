@@ -478,10 +478,13 @@ function setarPosicaoArvore(p){
 }
 
 function encerrar(b){
-    let metodo = String(b.target.dataset.metodo)
-    alert(`O método mais indicado é:  ${metodo}.
+    // console.log(typeof b.target.dataset.metodo)
+    recomendar(b.target.dataset.metodo,metodos)
+    var recomendacao
+    alert(`O método mais indicado é:  ${b.target.dataset.metodo}.
+    ${recomendacao}
     `)
-    console.log(recomendar(metodo,metodos))
+    // console.log(recomendacao)
 }
 
 function resetState(){
@@ -535,16 +538,23 @@ function criarResposta(conteudo, isFinal, child){
 function recomendar(metodo, baseDeMetodos){
     let k = 0
     let relacionados = []
-    do{
-        k++
-    }while(baseDeMetodos[k].nome != metodo)
-    for(let c = 0; c < baseDeMetodos[k].relacionado.length; c++){
+    // console.log(k)
+    // console.log(baseDeMetodos[k])
+    let pos = baseDeMetodos.map(function(e) { return e.nome; }).indexOf(metodo);
+    // console.log(baseDeMetodos[pos])
+    // console.log(baseDeMetodos[pos].relacionado.length)
+    // do{
+    // console.log(baseDeMetodos[k])
+    //     k++
+    // }while(baseDeMetodos[].nome != metodo)
+
+    for(let c = 0; c < baseDeMetodos[pos].relacionado.length; c++){
         // console.log(baseDeMetodos[i].relacionado[c])
         // let aux = []
         baseDeMetodos.forEach((itemAtual)=>{
-            if(baseDeMetodos[k].nome != itemAtual.nome){
+            if(baseDeMetodos[pos].nome != itemAtual.nome){
             itemAtual.relacionado.forEach((caracteristicaBuscada)=>{
-                if(caracteristicaBuscada === baseDeMetodos[k].relacionado[c]){
+                if(caracteristicaBuscada === baseDeMetodos[pos].relacionado[c]){
                     // aux.push(itemAtual.nome)
                     relacionados.push(itemAtual.nome)
                 }
@@ -555,6 +565,7 @@ function recomendar(metodo, baseDeMetodos){
         // relacionados.push(aux)
     }
     relacionados.sort()
+    // console.log(relacionados)
     frequenciasEm(relacionados)
 }
 
@@ -608,5 +619,7 @@ function frequenciasEm(array){
         frequencias.splice(c,1)
         }
     })
-    return(mensagem)  
+    // console.log(typeof mensagem)
+    console.log(mensagem)
+    // recomendacao = mensagem  
 }
