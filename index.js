@@ -6,19 +6,48 @@ let bancoDeRespostas = [ ]
 
 let bancoDePerguntas = [ ]
 
-let metodos = [
-    {nome: 'Analise de competidores', relacionado: []},
-    {nome: 'Entrevista', relacionado: []},
-    {nome: 'Questionario', relacionado: []},
-    {nome: 'Grupos de foco', relacionado: []},
-    {nome: 'Grupos de foco(posterior)', relacionado: []},
-    {nome: 'Entrevista(posterior)', relacionado: []},
-    {nome: 'Questionario(posterior)', relacionado: []},
-    {nome: 'Prototipacao em papel', relacionado: []},
-    {nome: 'Avaliacao heuristica', relacionado: []},
-    {nome: 'Percurso cognitivo', relacionado: []},
-    {nome: 'Teste de usabilidade', relacionado: []},
+var metodos = [
+    {nome: 'Analise de competidores', relacionado: 
+    ['inicial','exploratório','design','eficiente','simples']},
+    
+    {nome: 'Entrevista', relacionado: 
+    ['inicial','confirmatório','com usuários','simples','qualitativo']},
+    
+    {nome: 'Questionario', relacionado: 
+    ['inicial','eficiente','simples','exploratório', 'com usuários','quantitativo']},
+    
+    {nome: 'Grupos de foco', relacionado: 
+    ['inicial','elaborado','com usuários', 'exploratório','qualitativo']},
+    
+    {nome: 'Grupos de foco(posterior)', relacionado: 
+    ['posterior','elaborado','com usuários','confirmatório','qualitativo']},
+    
+    {nome: 'Entrevista(posterior)', relacionado: 
+    ['posterior','confirmatório','com usuários','qualitativo']},
+    
+    {nome: 'Questionario(posterior)', relacionado: 
+    ['posterior','exploratório','com usuários','simples','eficiente','quantitativo']},
+    
+    {nome: 'Prototipacao em papel', relacionado: 
+    ['design','soluções','exploratório','com usuários','simples']},
+    
+    {nome: 'Avaliacao heuristica', relacionado: 
+    ['sem usuários','elaborado','design','eficiente']},
+    
+    {nome: 'Percurso cognitivo', relacionado: 
+    ['sem usuários','elaborado','design']},
+    
+    {nome: 'Teste de usabilidade', relacionado: 
+    ['contextual','elaborado','design']},
+    
+    {nome: 'Estudos de campo', relacionado: 
+    ['contextual','com usuários','elaborado','confirmatório']},
+    
+    {nome: 'Avaliacao heuristica + Percurso cognitivo(facilidade de aprendizado) ou Inspecao semiotica(qualidade da comunicação)', relacionado: 
+    ['sem usuários','elaborado','design','eficiente']},
 ]
+
+// recomendar('Teste de usabilidade', metodos)
 
 const C1 = 0
 const C2 = 1 //constantes pra usar nos vetores que estruturam a arvore
@@ -34,7 +63,7 @@ criarCamada(3,2)
 criarCamada(4,6)
 criarCamada(5,10)
 criarCamada(6,6)
-console.log(arvore)
+// console.log(arvore)
 //=========================================================================================
 
 //====================================PERGUNTAS============================================
@@ -337,7 +366,7 @@ let respostasP9C5 = [
 ]
 let respostasP10C5 = [
     criarResposta('Se você quer entender usuários, seu ambiente, suas tarefas em contexto3',
-    true, 'Estudo de campo'),
+    true, 'Estudos de campo'),
     criarResposta('Se você quer avaliar a usabilidade de um sistema interativo2',
     true, 'Teste de usabilidade')
 ]
@@ -387,7 +416,7 @@ let numNaCamada
 let contResp
 //===========================FUNÇÕES=======================================================
 function startGuia(){
-    console.log("deu certo!")
+    // console.log("deu certo!")
     startBtn.classList.add('hide') //torna o botão de inicio invisivel
     camadaAtualPerguntas = 0 //contador para indicar em que camada estamos
     numNaCamada = 0
@@ -429,23 +458,10 @@ function displayRespostas(childsPergunta){
     
 }
 function setarPosicaoArvore(p){
-    // console.log(`cliquei em ${p.target.dataset.nome}`)
     let concatLayer = []
     for(let i = 0; i<arvore[camadaAtualPerguntas].respostas.length; i++){
         concatLayer = concatLayer.concat(arvore[camadaAtualPerguntas].respostas[i][0])
-        // console.log(arvore[camadaAtualPerguntas].respostas[i][0])
-        // console.log('-')
     }
-    // if(camadaAtualPerguntas == 3){ //retirar o excesso(itens de recomendação)
-    //     for(let i = 0; i<4; i++){
-    //         concatLayer.shift()
-    //     }
-    //     // console.log(concatLayer)
-    // }
-    // concatLayer.forEach((itemAtual)=>{
-    //     console.log(itemAtual.conteudo)
-    //     console.log(itemAtual)
-    // })
     let acc = 0;
     do{
         if(concatLayer[acc].isFinal){
@@ -454,21 +470,18 @@ function setarPosicaoArvore(p){
             acc++
         }
     }while(acc<concatLayer.length)
-    // concatLayer.forEach((itemAtual)=>{
-    //     console.log(itemAtual.conteudo)
-    //     console.log(itemAtual)
-    // })
-        console.log(concatLayer.length)
-        console.log(camadaAtualPerguntas,numNaCamada)
+    
     let pos = concatLayer.map(function(e) { return e.conteudo; }).indexOf(p.target.dataset.nome);
     numNaCamada = pos
     camadaAtualPerguntas++
-    // console.log(camadaAtualPerguntas,numNaCamada)
     setarProximaPergunta(camadaAtualPerguntas, numNaCamada)
 }
 
 function encerrar(b){
-    console.log(`cabo, foi ${b.target.dataset.metodo}`)
+    let metodo = String(b.target.dataset.metodo)
+    alert(`O método mais indicado é:  ${metodo}.
+    `)
+    console.log(recomendar(metodo,metodos))
 }
 
 function resetState(){
@@ -520,18 +533,18 @@ function criarResposta(conteudo, isFinal, child){
 }
 
 function recomendar(metodo, baseDeMetodos){
-    let i = 0
+    let k = 0
     let relacionados = []
     do{
-        i++
-    }while(baseDeMetodos[i].nome != metodo)
-    for(let c = 0; c < baseDeMetodos[i].relacionado.length; c++){
+        k++
+    }while(baseDeMetodos[k].nome != metodo)
+    for(let c = 0; c < baseDeMetodos[k].relacionado.length; c++){
         // console.log(baseDeMetodos[i].relacionado[c])
         // let aux = []
         baseDeMetodos.forEach((itemAtual)=>{
-            if(baseDeMetodos[i].nome != itemAtual.nome){
+            if(baseDeMetodos[k].nome != itemAtual.nome){
             itemAtual.relacionado.forEach((caracteristicaBuscada)=>{
-                if(caracteristicaBuscada === baseDeMetodos[i].relacionado[c]){
+                if(caracteristicaBuscada === baseDeMetodos[k].relacionado[c]){
                     // aux.push(itemAtual.nome)
                     relacionados.push(itemAtual.nome)
                 }
@@ -542,7 +555,6 @@ function recomendar(metodo, baseDeMetodos){
         // relacionados.push(aux)
     }
     relacionados.sort()
-    // console.log(relacionados)
     frequenciasEm(relacionados)
 }
 
@@ -596,5 +608,5 @@ function frequenciasEm(array){
         frequencias.splice(c,1)
         }
     })
-    console.log(mensagem)  
+    return(mensagem)  
 }
