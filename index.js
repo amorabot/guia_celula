@@ -15,6 +15,9 @@ let metodos = [
     {nome: 'Entrevista(posterior)', relacionado: []},
     {nome: 'Questionario(posterior)', relacionado: []},
     {nome: 'Prototipacao em papel', relacionado: []},
+    {nome: 'Avaliacao heuristica', relacionado: []},
+    {nome: 'Percurso cognitivo', relacionado: []},
+    {nome: 'Teste de usabilidade', relacionado: []},
 ]
 
 const C1 = 0
@@ -30,7 +33,7 @@ criarCamada(2,1)
 criarCamada(3,2)
 criarCamada(4,6)
 criarCamada(5,10)
-criarCamada(6,7)
+criarCamada(6,6)
 console.log(arvore)
 //=========================================================================================
 
@@ -65,11 +68,11 @@ let P2C4 = { conteudo: 'Gostaria de realizar a avaliação com ou sem usuários?
 let P3C4 = { conteudo: 'Gostaria de realizar a avaliação com ou sem usuários?',
                     childs: arvore[C4].respostas[2]}
                     
-let P4C4 = { conteudo: 'Como você gostaria de obter suas informações?',
+let P4C4 = { conteudo: 'Como você gostaria de obter suas informações?1',
                     childs: arvore[C4].respostas[3]}
-let P5C4 = { conteudo: 'Como você gostaria de obter suas informações?',
+let P5C4 = { conteudo: 'Como você gostaria de obter suas informações?2',
                     childs: arvore[C4].respostas[4]}
-let P6C4 = { conteudo: 'Como você gostaria de obter suas informações?',
+let P6C4 = { conteudo: 'Como você gostaria de obter suas informações?3',
                     childs: arvore[C4].respostas[5]}
         bancoDePerguntas[C4].push(P1C4)
         bancoDePerguntas[C4].push(P2C4)
@@ -84,21 +87,25 @@ let P1C5 = { conteudo: 'Aqui vão algumas sugestões finais(com usuários):',
                     childs: arvore[C5].respostas[0]}
 let P2C5 = { conteudo: 'Aqui vão algumas sugestões finais(sem usuários):',
                     childs: arvore[C5].respostas[1]}
-let P3C5 = { conteudo: 'Que tipo de informação você quer descobrir?',
+let P3C5 = { conteudo: 'Aqui vão algumas sugestões finais(com usuários):',
                     childs: arvore[C5].respostas[2]}
-let P4C5 = { conteudo: 'Que tipo de informação você quer descobrir?',
+let P4C5 = { conteudo: 'Aqui vão algumas sugestões finais(sem usuários):',
                     childs: arvore[C5].respostas[3]}
-let P5C5 = { conteudo: 'Que tipo de informação você quer descobrir?',
+                    
+                    
+                    
+let P5C5 = { conteudo: 'Que tipos de dados você deseja coletar?',
                     childs: arvore[C5].respostas[4]}
-let P6C5 = { conteudo: 'Que tipo de informação você quer descobrir?',
+let P6C5 = { conteudo: 'Aqui vai uma sugestão:',
                     childs: arvore[C5].respostas[5]}
-let P7C5 = { conteudo: 'Que tipo de informação você quer descobrir?',
+let P7C5 = { conteudo: 'Que tipo de dados você deseja coletar?',
                     childs: arvore[C5].respostas[6]}
-let P8C5 = { conteudo: 'Que tipo de informação você quer descobrir?',
+                    
+let P8C5 = { conteudo: 'Aqui vai uma sugestão:',
                     childs: arvore[C5].respostas[7]}
-let P9C5 = { conteudo: 'Que tipo de informação você quer descobrir?',
+let P9C5 = { conteudo: 'Que tipos de dados deseja coletar?',
                     childs: arvore[C5].respostas[8]}
-let P10C5 = { conteudo: 'Que tipo de informação você quer descobrir?',
+let P10C5 = { conteudo: 'Aqui vão algumas sugestões:',
                     childs: arvore[C5].respostas[9]}
         bancoDePerguntas[C5].push(P1C5)
         bancoDePerguntas[C5].push(P2C5)
@@ -110,6 +117,15 @@ let P10C5 = { conteudo: 'Que tipo de informação você quer descobrir?',
         bancoDePerguntas[C5].push(P8C5)
         bancoDePerguntas[C5].push(P9C5)
         bancoDePerguntas[C5].push(P10C5)
+//=========================================================
+
+//                                  6a CAMADA
+let P1C6 = { conteudo: 'Aqui vão algumas sugestões finais1:',
+                    childs: arvore[C6].respostas[0]}
+let P2C6 = { conteudo: 'Aqui vão algumas sugestões finais2:',
+                    childs: arvore[C6].respostas[1]}
+        bancoDePerguntas[C6].push(P1C6)
+        bancoDePerguntas[C6].push(P2C6)
 //=========================================================================================
 
                         preencherCamadas('Perguntas')
@@ -158,7 +174,7 @@ let respostasP2C3 = [           //RESPOSTAS 2a PERGUNTA
     criarResposta('Artefatos que descrevem o conceito do design.',
     false, arvore[C4].perguntas[3][0]),
     
-    criarResposta('Protótipos de média e baixa fidelidadeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee.',
+    criarResposta('Protótipos de média e baixa fidelidade.',
     false, arvore[C4].perguntas[4][0]),
     
     criarResposta('Protótipos de alta fidelidade ou navegáveis.',
@@ -202,6 +218,8 @@ let respostasP3C4 = [
 
 
 
+
+
 let respostasP4C4 = [
     criarResposta('Gostaria de ouvir as opiniões e expectativas dos usuários',
     false, arvore[C5].perguntas[4][0]),
@@ -209,6 +227,8 @@ let respostasP4C4 = [
     criarResposta('Gostaria de observar como o usuário realiza suas atividades',
     false, arvore[C5].perguntas[5][0])
 ]
+
+
 
 let respostasP5C4 = [
     criarResposta('Gostaria de ouvir as opiniões e expectativas dos usuários.',
@@ -218,11 +238,13 @@ let respostasP5C4 = [
     false, arvore[C5].perguntas[7][0])
 ]
 
+
+
 let respostasP6C4 = [
-    criarResposta('Gostaria de ouvir as opiniões e expectativas dos usuários',
+    criarResposta('Gostaria de ouvir as opiniões e expectativas dos usuários,',
     false, arvore[C5].perguntas[8][0]),
     
-    criarResposta('Gostaria de observar como o usuário realiza suas atividades',
+    criarResposta('Gostaria de observar como o usuário realiza suas atividades,',
     false, arvore[C5].perguntas[9][0])
 ]
         bancoDeRespostas[C4].push(respostasP1C4)
@@ -240,30 +262,112 @@ let respostasP1C5 = [           //RESPOSTAS 1a PERGUNTA
     true, 'Grupos de foco(posterior)'),
     
     criarResposta('Se você quer coletar informações detalhadas profundas de usuários individuais',
-    true, 'Entrevista(posterior'),
+    true, 'Entrevista(posterior)'),
     
     criarResposta('Se você quer coletar rapidamente dados (especialmente quantitativos) de muitos usuários',
-    true, 'Questionario(posterior'),
+    true, 'Questionario(posterior)'),
     
-    criarResposta('Se você quer avaliar a usabilidade de um design por meio da utilização de usuários',
+    criarResposta('Se você quer avaliar a usabilidade de um design por meio da utilização de usuários1',
     true, 'Prototipacao em papel'),
 ]
 
 let respostasP2C5 = [           //RESPOSTAS 2a PERGUNTA
     
-    criarResposta('Avaliar como o usuário utiliza determinado sistema2',
-    false, arvore[C6].perguntas[1][0]),
+    criarResposta('Se você quer encontrar problemas de usabilidade(fundamental ter pelo menos 3 especialistas disponíveis para o projeto)',
+    true, 'Avaliacao heuristica'),
+    
+    criarResposta('Se você quer avaliar a facilidade de aprendizado de um sistema',
+    true, 'Percurso cognitivo')
 ]
 let respostasP3C5 = [           //RESPOSTAS 3a PERGUNTA
-    criarResposta('Avaliar e/ou comparar alternativas de design3',
+    criarResposta('Se você quer avaliar atitudes, opiniões e impressões de vários usuarios',
+    true, 'Grupos de foco(posterior)'),
+    
+    criarResposta('Se você quer coletar informações detalhadas profundas de usuarios individuais',
+    true, 'Entrevista(posterior)'),
+    
+    criarResposta('Se você quer coletar rapidamente dados (especialmente quantitativos) de muitos usuarios',
+    true, 'Questionario(posterior)'),
+    
+    criarResposta('Se você quer avaliar a usabilidade de um sistema interativo1',
+    true, 'Teste de usabilidade'),
+]
+let respostasP4C5 = [
+    criarResposta('Se você quer encontrar problemas de usabilidade(importante ter pelo menos 3 especialistas no projeto)',
+    true, 'Avaliacao heuristica + Percurso cognitivo(facilidade de aprendizado) ou Inspecao semiotica(qualidade da comunicação)'),
+]
+
+
+
+let respostasP5C5 = [
+    criarResposta('Dados quantitativos: quantas vezes alguma ação foi realizada, tempo demandado, número de erros cometidos1',
+    false, arvore[C6].perguntas[0][0]),
+    
+    criarResposta('Dados qualitativos: opiniões, expectativas, críticas, sugestões e comentários1',
+    false, arvore[C6].perguntas[1][0])
+]
+let respostasP6C5 = [
+    criarResposta('Se você quer entender usuários, seu ambiente, suas tarefas em contexto1',
+    true, 'Estudos de campo'),
+    
+]
+
+
+
+let respostasP7C5 = [
+        criarResposta('Dados quantitativos: quantas vezes alguma ação foi realizada, tempo demandado, número de erros cometidos1',
     false, arvore[C6].perguntas[2][0]),
     
-    criarResposta('Avaliar como o usuário utiliza determinado sistema3',
-    false, arvore[C6].perguntas[3][0]),
+    criarResposta('Dados qualitativos: opiniões, expectativas, críticas, sugestões e comentários1',
+    false, arvore[C6].perguntas[3][0])
+]
+let respostasP8C5 = [
+    criarResposta('Se você quer entender usuários, seu ambiente, suas tarefas em contexto2',
+    true, 'Estudo de campo'),
+    criarResposta('Se você quer avaliar a usabilidade de um design por meio da utilização de usuários2',
+    true, 'Prototipacao em papel')
+]
+
+
+let respostasP9C5 = [
+    criarResposta('Dados quantitativos: quantas vezes alguma ação foi realizada, tempo demandado, número de erros cometidos3',
+    false, arvore[C6].perguntas[4][0]),
+    criarResposta('Dados quantitativos: quantas vezes alguma ação foi realizada, tempo demandado, número de erros cometidos4',
+    false, arvore[C6].perguntas[5][0]),
+]
+let respostasP10C5 = [
+    criarResposta('Se você quer entender usuários, seu ambiente, suas tarefas em contexto3',
+    true, 'Estudo de campo'),
+    criarResposta('Se você quer avaliar a usabilidade de um sistema interativo2',
+    true, 'Teste de usabilidade')
 ]
         bancoDeRespostas[C5].push(respostasP1C5)
         bancoDeRespostas[C5].push(respostasP2C5)
         bancoDeRespostas[C5].push(respostasP3C5)
+        bancoDeRespostas[C5].push(respostasP4C5)
+        bancoDeRespostas[C5].push(respostasP5C5)
+        bancoDeRespostas[C5].push(respostasP6C5)
+        bancoDeRespostas[C5].push(respostasP7C5)
+        bancoDeRespostas[C5].push(respostasP8C5)
+        bancoDeRespostas[C5].push(respostasP9C5)
+        bancoDeRespostas[C5].push(respostasP10C5)
+//=========================================================================================
+
+//                                  6a CAMADA
+
+let respostasP1C6 = [           //RESPOSTAS 1a PERGUNTA
+    criarResposta('Se você quer coletar rapidamente dados(principalmente quantitativos) de muitos usuários1',
+    true, 'Questionario(posterior)'),
+]
+
+let respostasP2C6 = [           //RESPOSTAS 2a PERGUNTA
+    criarResposta('Se você quer coletar informações detalhadas e profundas de usuários individuais',
+    true, 'Entrevista(posterior)'),
+    criarResposta('Se você quer avaliar atitudes, opiniões e impressões de vários usuários',
+    true, 'Grupos de foco(posterior)'),
+]
+        bancoDeRespostas[C6].push(respostasP1C6)
+        bancoDeRespostas[C6].push(respostasP2C6)
 //=========================================================================================
 
                         preencherCamadas('Respostas')
